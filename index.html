@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inca Herbal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeInUp {
+      0% {opacity: 0; transform: translateY(30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes underlineGrow {
+      from { width: 0; opacity: 0; }
+      to { width: 100%; opacity: 1; }
+    }
+    .fade-in-up {
+      animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1) forwards;
+      transition: opacity 0.4s, transform 0.8s;
+    }
+    .text-anim { opacity:0; }
+    .underline-anim {
+      display: block;
+      height: 3px;
+      background: #228142;
+      border-radius: 2px;
+      margin: 0.15em auto 0 auto;
+      opacity: 0;
+      width: 0;
+      transition: width 0.3s;
+    }
+    .underline-anim.active {
+      animation: underlineGrow 0.45s cubic-bezier(.4,0,.2,1) forwards;
+    }
+  </style>
+</head>
+<body class="bg-green-50 text-gray-800 flex min-h-screen flex-col">
+
+<main class="flex flex-1 flex-col justify-center items-center min-h-screen bg-white">
+  <img src="logo-inca.jpg" alt="Logotipo de Inca Herbal" class="w-48 opacity-0 fade-in-up" id="logo" loading="lazy">
+
+  <!-- Texto animado, mismo ancho que el logo -->
+  <div class="w-48 mt-6 mb-3 flex flex-row items-center justify-center select-none text-center whitespace-nowrap relative">
+    <span id="txt1" class="text-[0.88rem] sm:text-[1.13rem] font-bold text-anim"
+          style="color:#64C680; letter-spacing: .03em;">
+      Cuidado natural
+    </span>
+    <span class="text-[0.88rem] sm:text-[1.13rem] font-bold text-anim" style="width:0.8em;">&nbsp;</span>
+    <span id="txt2wrap" class="relative">
+      <span id="txt2" class="text-[0.88rem] sm:text-[1.13rem] font-semibold text-anim"
+            style="color:#228142; letter-spacing: .01em;">
+        para ti y tu familia
+      </span>
+      <span id="txt2underline" class="underline-anim"
+            style="background:#228142;"></span>
+    </span>
+  </div>
+
+  <button id="contactBtn" class="mt-7 px-8 py-3 rounded-full text-[1rem] shadow-lg transition opacity-0 fade-in-up border-2"
+    style="color:#228142; background:#fff; border-color:#228142;">
+    Comunícate al 968 589 525
+  </button>
+</main>
+
+<footer class="bg-green-800 text-white text-center py-3 text-sm w-full">
+  <p>© 2025 Inca Herbal. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  // Animación inicial secuencial
+  window.addEventListener('load', () => {
+    const logo = document.getElementById('logo');
+    const contactBtn = document.getElementById('contactBtn');
+    const txt1 = document.getElementById('txt1');
+    const txt2 = document.getElementById('txt2');
+    const underline = document.getElementById('txt2underline');
+    setTimeout(() => {
+      logo.classList.add('opacity-100');
+    }, 400);
+    setTimeout(() => {
+      txt1.classList.remove('text-anim');
+      txt1.classList.add('fade-in-up');
+    }, 800);
+    setTimeout(() => {
+      txt2.classList.remove('text-anim');
+      txt2.classList.add('fade-in-up');
+    }, 1150);
+    setTimeout(() => {
+      contactBtn.classList.add('opacity-100');
+      contactBtn.classList.add('fade-in-up');
+    }, 1700);
+
+    // Animar subrayado
+    setTimeout(() => {
+      underline.classList.add('active');
+    }, 1900); // 0.75s después (1150 + 750ms)
+  });
+</script>
+</body>
+</html>
+
